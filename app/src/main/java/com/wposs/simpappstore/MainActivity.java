@@ -33,10 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void animation() {
         binding.lottieAnimationViewSplash.animate().translationY(-1500F).setDuration(1000).setStartDelay(2000);
-        binding.textViewChatSimpApp.animate().translationYBy(1000F).setDuration(1000).setStartDelay(2500);
+        binding.textViewSimpAppStore.animate().translationYBy(1000F).setDuration(1000).setStartDelay(2500);
 
         Animation animationSlideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up);
-        binding.textViewChatSimpApp.setAnimation(animationSlideUp);
+        binding.textViewSimpAppStore.setAnimation(animationSlideUp);
 
         Animation animationSlideDown = AnimationUtils.loadAnimation(this, R.anim.slide_down);
         binding.linearLayoutSplash.setAnimation(animationSlideDown);
