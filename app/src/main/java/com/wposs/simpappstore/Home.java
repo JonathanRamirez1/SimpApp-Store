@@ -1,22 +1,23 @@
 package com.wposs.simpappstore;
 
+import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
 public class Home {
 
-    private ImageView cover;
-    private ImageView icon;
+    private int cover;
+    private int icon;
     private String name;
     private String category;
     private String countStar;
-    private ImageView star;
+    private int star;
     private String sizeApp;
 
-    public Home() {
+   /* public Home() {
         super();
-    }
+    }*/
 
-    public Home(ImageView cover, ImageView icon, String name, String category, String countStar, ImageView star, String sizeApp) {
+    public Home(int cover, int icon, String name, String category, String countStar, int star, String sizeApp) {
         this.cover = cover;
         this.icon = icon;
         this.name = name;
@@ -26,19 +27,19 @@ public class Home {
         this.sizeApp = sizeApp;
     }
 
-    public ImageView getCover() {
+    public int getCover() {
         return cover;
     }
 
-    public void setCover(ImageView cover) {
+    public void setCover(int cover) {
         this.cover = cover;
     }
 
-    public ImageView getIcon() {
+    public int getIcon() {
         return icon;
     }
 
-    public void setIcon(ImageView icon) {
+    public void setIcon(int icon) {
         this.icon = icon;
     }
 
@@ -66,11 +67,11 @@ public class Home {
         this.countStar = countStar;
     }
 
-    public ImageView getStar() {
+    public int getStar() {
         return star;
     }
 
-    public void setStar(ImageView star) {
+    public void setStar(int star) {
         this.star = star;
     }
 
