@@ -1,98 +1,79 @@
 package com.wposs.simpappstore;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
+import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
-
+import android.view.MenuItem;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.wposs.simpappstore.databinding.ActivityHomeBinding;
-
-import java.util.ArrayList;
-
 public class HomeActivity extends AppCompatActivity {
 
     private ActivityHomeBinding binding;
-    private HomeAdapter homeAdapter;
-    private ArrayList<Home> itemsPopularityHome;
-    private ArrayList<Home> itemsAdsHome;
-    private ArrayList<Home> itemsGamesHome;
+    private MenuItem previewBottomSelected = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        setHomeAdapter();
-        setHomeAdapterAds();
-        setHomeAdapterGames();
+
+        /** Toolbar **/
+        setSupportActionBar(findViewById(R.id.toolbarView));
+
+        setUpViewPager(getPagerAdapter());
+        setUpBottomNavigationBar();
     }
 
-    private void setHomeAdapter() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        binding.recyclerViewHome.setLayoutManager(layoutManager);
-        itemsPopularityHome = new ArrayList<>();
-        homeAdapter = new HomeAdapter(itemsPopularityHome);
-        binding.recyclerViewHome.setHasFixedSize(true);
-        binding.recyclerViewHome.setAdapter(homeAdapter);
-        setItemsPopularityHome();
+    private PagerAdapter getPagerAdapter() {
+        PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager());
+        pagerAdapter.addFragment(new GamesFragment());
+        pagerAdapter.addFragment(new AppsFragment());
+        return pagerAdapter;
     }
 
-    private void setItemsPopularityHome() {
-        for (int i = 0; i < 10; i++) {
-            itemsPopularityHome.add(i, new Home(
-                    R.drawable.whats,
-                    R.drawable.ic_whats,
-                    "WhatsApp Messenger",
-                    "Communication",
-                    "4,2",
-                    R.drawable.ic_start,
-                    "31 MB"));
-        }
+    private void setUpViewPager(PagerAdapter pagerAdapter) {
+        binding.viewPager.setAdapter(pagerAdapter);
+        binding.viewPager.setOffscreenPageLimit(pagerAdapter.getCount());
+        binding.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrollStateChanged(int state) {}
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
+            @Override
+            public void onPageSelected(int position) {
+                if (previewBottomSelected == null) {
+                    binding.bottomNavigation.getMenu().getItem(0).setChecked(false);
+                } else {
+                    previewBottomSelected.setChecked(false);
+                }
+                binding.bottomNavigation.getMenu().getItem(position).setChecked(true);
+                previewBottomSelected = binding.bottomNavigation.getMenu().getItem(position);
+            }
+        });
     }
 
-    private void setHomeAdapterAds() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        binding.recyclerViewAdsHome.setLayoutManager(layoutManager);
-        itemsAdsHome = new ArrayList<>();
-        homeAdapter = new HomeAdapter(itemsAdsHome);
-        binding.recyclerViewAdsHome.setHasFixedSize(true);
-        binding.recyclerViewAdsHome.setAdapter(homeAdapter);
-        setItemsAdsHome();
-    }
-
-    private void setItemsAdsHome() {
-        for (int i = 0; i < 10; i++) {
-            itemsAdsHome.add(i, new Home(
-                    R.drawable.ic_cover_face,
-                    R.drawable.ic_face,
-                    "Facebook Messenger",
-                    "Communication",
-                    "4,3",
-                    R.drawable.ic_start,
-                    "125 MB"));
-        }
-    }
-
-    private void setHomeAdapterGames() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        binding.recyclerViewGamesHome.setLayoutManager(layoutManager);
-        itemsGamesHome = new ArrayList<>();
-        homeAdapter = new HomeAdapter(itemsGamesHome);
-        binding.recyclerViewGamesHome.setHasFixedSize(true);
-        binding.recyclerViewGamesHome.setAdapter(homeAdapter);
-        setItemsGamesHome();
-    }
-
-    private void setItemsGamesHome() {
-        for (int i = 0; i < 10; i++) {
-            itemsGamesHome.add(i, new Home(
-                    R.drawable.ic_call_cover,
-                    R.drawable.ic_call,
-                    "Call Of Dutty Mobile",
-                    "Estrategia",
-                    "5",
-                    R.drawable.ic_start,
-                    "3 GB"));
-        }
+    private void setUpBottomNavigationBar() {
+        binding.bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                boolean state;
+                switch (item.getItemId()) {
+                    case R.id.bottom_nav_games:
+                        binding.viewPager.setCurrentItem(0);
+                        state = true;
+                        break;
+                    case R.id.bottom_nav_apps:
+                        binding.viewPager.setCurrentItem(1);
+                        state = true;
+                        break;
+                    default: {
+                        state = false;
+                    }
+                }
+                return state;
+            }
+        });
     }
 }
