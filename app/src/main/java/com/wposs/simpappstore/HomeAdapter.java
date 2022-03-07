@@ -40,6 +40,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeHolder> {
         return this.itemsHome.size();
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
+    }
+
     public static final class HomeHolder extends RecyclerView.ViewHolder {
 
         private final ItemHomeBinding binding;

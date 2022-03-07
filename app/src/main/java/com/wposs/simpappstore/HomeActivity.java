@@ -8,13 +8,14 @@ import android.os.Bundle;
 import com.wposs.simpappstore.databinding.ActivityHomeBinding;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
     private ActivityHomeBinding binding;
     private HomeAdapter homeAdapter;
-    private ArrayList<Home> itemsHome;
+    private ArrayList<Home> itemsPopularityHome;
+    private ArrayList<Home> itemsAdsHome;
+    private ArrayList<Home> itemsGamesHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,28 +23,76 @@ public class HomeActivity extends AppCompatActivity {
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setHomeAdapter();
+        setHomeAdapterAds();
+        setHomeAdapterGames();
     }
 
     private void setHomeAdapter() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         binding.recyclerViewHome.setLayoutManager(layoutManager);
-        itemsHome = new ArrayList<>();
-        homeAdapter = new HomeAdapter(itemsHome);
+        itemsPopularityHome = new ArrayList<>();
+        homeAdapter = new HomeAdapter(itemsPopularityHome);
         binding.recyclerViewHome.setHasFixedSize(true);
         binding.recyclerViewHome.setAdapter(homeAdapter);
-        setItemsHome();
+        setItemsPopularityHome();
     }
 
-    private void setItemsHome() {
+    private void setItemsPopularityHome() {
         for (int i = 0; i < 10; i++) {
-            itemsHome.add(i, new Home(
+            itemsPopularityHome.add(i, new Home(
                     R.drawable.whats,
                     R.drawable.ic_whats,
-                    "Hola que hace",
-                    "Hola",
-                    "2",
+                    "WhatsApp Messenger",
+                    "Communication",
+                    "4,2",
                     R.drawable.ic_start,
-                    "100 MB"));
+                    "31 MB"));
+        }
+    }
+
+    private void setHomeAdapterAds() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        binding.recyclerViewAdsHome.setLayoutManager(layoutManager);
+        itemsAdsHome = new ArrayList<>();
+        homeAdapter = new HomeAdapter(itemsAdsHome);
+        binding.recyclerViewAdsHome.setHasFixedSize(true);
+        binding.recyclerViewAdsHome.setAdapter(homeAdapter);
+        setItemsAdsHome();
+    }
+
+    private void setItemsAdsHome() {
+        for (int i = 0; i < 10; i++) {
+            itemsAdsHome.add(i, new Home(
+                    R.drawable.ic_cover_face,
+                    R.drawable.ic_face,
+                    "Facebook Messenger",
+                    "Communication",
+                    "4,3",
+                    R.drawable.ic_start,
+                    "125 MB"));
+        }
+    }
+
+    private void setHomeAdapterGames() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        binding.recyclerViewGamesHome.setLayoutManager(layoutManager);
+        itemsGamesHome = new ArrayList<>();
+        homeAdapter = new HomeAdapter(itemsGamesHome);
+        binding.recyclerViewGamesHome.setHasFixedSize(true);
+        binding.recyclerViewGamesHome.setAdapter(homeAdapter);
+        setItemsGamesHome();
+    }
+
+    private void setItemsGamesHome() {
+        for (int i = 0; i < 10; i++) {
+            itemsGamesHome.add(i, new Home(
+                    R.drawable.ic_call_cover,
+                    R.drawable.ic_call,
+                    "Call Of Dutty Mobile",
+                    "Estrategia",
+                    "5",
+                    R.drawable.ic_start,
+                    "3 GB"));
         }
     }
 }

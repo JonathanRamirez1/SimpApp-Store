@@ -12,10 +12,11 @@ public class Home {
     private String countStar;
     private int star;
     private String sizeApp;
+    private int viewType;
 
-   /* public Home() {
-        super();
-    }*/
+    private static final int ItemPopularityApps = 0;
+    private static final int ItemAd = 1;
+    private static final int ItemPopularityGames = 2;
 
     public Home(int cover, int icon, String name, String category, String countStar, int star, String sizeApp) {
         this.cover = cover;
@@ -25,6 +26,10 @@ public class Home {
         this.countStar = countStar;
         this.star = star;
         this.sizeApp = sizeApp;
+    }
+
+    public Home(int viewType) {
+        this.viewType = viewType;
     }
 
     public int getCover() {
@@ -81,5 +86,19 @@ public class Home {
 
     public void setSizeApp(String sizeApp) {
         this.sizeApp = sizeApp;
+    }
+
+    public int getViewType() {
+        return viewType;
+    }
+
+    public void setViewType(int viewType) {
+        this.viewType = viewType;
+    }
+
+    public static final class Companion {
+        private Companion() {
+
+        }
     }
 }
