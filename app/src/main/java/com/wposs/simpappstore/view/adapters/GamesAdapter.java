@@ -1,5 +1,6 @@
 package com.wposs.simpappstore.view.adapters;
 
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +11,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.wposs.simpappstore.data.GamesModel;
 import com.wposs.simpappstore.databinding.ItemGamesBinding;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.GamesHolder> {
 
-    private List<GamesModel> itemsGamesModel;
+    private final List<GamesModel> itemsGamesModel;
+    private final List<GamesModel> itemsOriginGamesModel;
 
     public GamesAdapter(List<GamesModel> itemsGamesModel) {
         this.itemsGamesModel = itemsGamesModel;
+        itemsOriginGamesModel = new ArrayList<>();
+        itemsOriginGamesModel.addAll(itemsGamesModel);
     }
 
     @NonNull
@@ -37,6 +43,21 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.GamesHolder>
     @Override
     public int getItemCount() {
         return this.itemsGamesModel.size();
+    }
+
+    public void filterGames(String nameGame) {
+        int size = nameGame.length();
+        if (size == 0) {
+            itemsGamesModel.clear();
+            itemsGamesModel.addAll(itemsOriginGamesModel);
+        } else {
+            List<GamesModel> collection = itemsGamesModel.stream().filter(filter ->
+                    filter.getName().toLowerCase().contains(nameGame.toLowerCase()))
+                    .collect(Collectors.toList());
+            itemsGamesModel.clear();
+            itemsGamesModel.addAll(collection);
+        }
+        notifyDataSetChanged();
     }
 
     //TODO verificar si sirve para algo, sino borrar

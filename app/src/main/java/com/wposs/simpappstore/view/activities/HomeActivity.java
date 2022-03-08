@@ -23,7 +23,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         /** Toolbar **/
-        setSupportActionBar(findViewById(R.id.toolbarView));
+      /*  setSupportActionBar(findViewById(R.id.toolbarView));*/
 
         setUpViewPager(getPagerAdapter());
         setUpBottomNavigationBar();

@@ -1,24 +1,21 @@
 package com.wposs.simpappstore.view.fragments;
 
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.wposs.simpappstore.data.GamesModel;
 import com.wposs.simpappstore.R;
 import com.wposs.simpappstore.view.adapters.GamesAdapter;
 import com.wposs.simpappstore.databinding.FragmentGamesBinding;
-
 import java.util.ArrayList;
 
-public class GamesFragment extends Fragment {
+public class GamesFragment extends Fragment implements SearchView.OnQueryTextListener {
 
     private FragmentGamesBinding binding;
     private GamesAdapter gamesAdapter;
@@ -35,6 +32,7 @@ public class GamesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        binding.searchViewGames.setOnQueryTextListener(this);
         setAdapterWelcomeGames();
         setAdapterAdsGames();
         setGamesAdapterGames();
@@ -83,7 +81,7 @@ public class GamesFragment extends Fragment {
                     "4,3",
                     R.drawable.ic_start,
                     "125 MB"));
-        }
+        } 
     }
 
     private void setGamesAdapterGames() {
@@ -107,5 +105,16 @@ public class GamesFragment extends Fragment {
                     R.drawable.ic_start,
                     "3 GB"));
         }
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        gamesAdapter.filterGames(newText);
+        return false;
     }
 }

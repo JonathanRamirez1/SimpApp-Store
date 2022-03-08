@@ -35,6 +35,8 @@ public class AppsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setAdapterWelcomeApps();
+        setAdapterAdsApps();
+        setAdapterPopularityApps();
     }
 
     private void setAdapterWelcomeApps() {
@@ -45,8 +47,6 @@ public class AppsFragment extends Fragment {
         binding.recyclerViewWelcomeApps.setHasFixedSize(true);
         binding.recyclerViewWelcomeApps.setAdapter(appsAdapter);
         setItemsWelcomeApps();
-        setAdapterAdsApps();
-        setAdapterPopularityApps();
     }
 
     private void setItemsWelcomeApps() {

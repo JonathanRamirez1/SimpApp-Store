@@ -19,17 +19,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchViewGames"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayoutWelcomeApps"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/searchViewGames">
 
                 <LinearLayout
                     android:layout_width="match_parent"
