@@ -1,4 +1,4 @@
-package com.wposs.simpappstore;
+package com.wposs.simpappstore.view.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import com.wposs.simpappstore.R;
 import com.wposs.simpappstore.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {

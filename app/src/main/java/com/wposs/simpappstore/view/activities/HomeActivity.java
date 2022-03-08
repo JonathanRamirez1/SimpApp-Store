@@ -1,12 +1,16 @@
-package com.wposs.simpappstore;
+package com.wposs.simpappstore.view.activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.view.MenuItem;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import com.wposs.simpappstore.R;
+import com.wposs.simpappstore.view.adapters.PagerAdapter;
 import com.wposs.simpappstore.databinding.ActivityHomeBinding;
+import com.wposs.simpappstore.view.fragments.AppsFragment;
+import com.wposs.simpappstore.view.fragments.GamesFragment;
+
 public class HomeActivity extends AppCompatActivity {
 
     private ActivityHomeBinding binding;
@@ -55,25 +59,22 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void setUpBottomNavigationBar() {
-        binding.bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                boolean state;
-                switch (item.getItemId()) {
-                    case R.id.bottom_nav_games:
-                        binding.viewPager.setCurrentItem(0);
-                        state = true;
-                        break;
-                    case R.id.bottom_nav_apps:
-                        binding.viewPager.setCurrentItem(1);
-                        state = true;
-                        break;
-                    default: {
-                        state = false;
-                    }
+        binding.bottomNavigation.setOnNavigationItemSelectedListener(item -> {
+            boolean state;
+            switch (item.getItemId()) {
+                case R.id.bottom_nav_games:
+                    binding.viewPager.setCurrentItem(0);
+                    state = true;
+                    break;
+                case R.id.bottom_nav_apps:
+                    binding.viewPager.setCurrentItem(1);
+                    state = true;
+                    break;
+                default: {
+                    state = false;
                 }
-                return state;
             }
+            return state;
         });
     }
 }

@@ -1,4 +1,4 @@
-package com.wposs.simpappstore;
+package com.wposs.simpappstore.view.adapters;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

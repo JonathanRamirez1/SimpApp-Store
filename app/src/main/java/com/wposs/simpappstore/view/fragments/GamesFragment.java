@@ -1,4 +1,4 @@
-package com.wposs.simpappstore;
+package com.wposs.simpappstore.view.fragments;
 
 import android.os.Bundle;
 
@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.wposs.simpappstore.databinding.ActivityHomeBinding;
+import com.wposs.simpappstore.data.GamesModel;
+import com.wposs.simpappstore.R;
+import com.wposs.simpappstore.view.adapters.GamesAdapter;
 import com.wposs.simpappstore.databinding.FragmentGamesBinding;
 
 import java.util.ArrayList;
@@ -19,10 +21,10 @@ import java.util.ArrayList;
 public class GamesFragment extends Fragment {
 
     private FragmentGamesBinding binding;
-    private HomeAdapter homeAdapter;
-    private ArrayList<Home> itemsPopularityHome;
-    private ArrayList<Home> itemsAdsHome;
-    private ArrayList<Home> itemsGamesHome;
+    private GamesAdapter gamesAdapter;
+    private ArrayList<GamesModel> itemsPopularityGamesModel;
+    private ArrayList<GamesModel> itemsAdsGamesModel;
+    private ArrayList<GamesModel> itemsGamesGamesModel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,24 +35,24 @@ public class GamesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setHomeAdapter();
-        setHomeAdapterAds();
-        setHomeAdapterGames();
+        setAdapterWelcomeGames();
+        setAdapterAdsGames();
+        setGamesAdapterGames();
     }
 
-    private void setHomeAdapter() {
+    private void setAdapterWelcomeGames() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         binding.recyclerViewHome.setLayoutManager(layoutManager);
-        itemsPopularityHome = new ArrayList<>();
-        homeAdapter = new HomeAdapter(itemsPopularityHome);
+        itemsPopularityGamesModel = new ArrayList<>();
+        gamesAdapter = new GamesAdapter(itemsPopularityGamesModel);
         binding.recyclerViewHome.setHasFixedSize(true);
-        binding.recyclerViewHome.setAdapter(homeAdapter);
-        setItemsPopularityHome();
+        binding.recyclerViewHome.setAdapter(gamesAdapter);
+        setItemsWelcomeGames();
     }
 
-    private void setItemsPopularityHome() {
+    private void setItemsWelcomeGames() {
         for (int i = 0; i < 10; i++) {
-            itemsPopularityHome.add(i, new Home(
+            itemsPopularityGamesModel.add(i, new GamesModel(
                     R.drawable.whats,
                     R.drawable.ic_whats,
                     "WhatsApp Messenger",
@@ -61,19 +63,19 @@ public class GamesFragment extends Fragment {
         }
     }
 
-    private void setHomeAdapterAds() {
+    private void setAdapterAdsGames() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         binding.recyclerViewAdsHome.setLayoutManager(layoutManager);
-        itemsAdsHome = new ArrayList<>();
-        homeAdapter = new HomeAdapter(itemsAdsHome);
+        itemsAdsGamesModel = new ArrayList<>();
+        gamesAdapter = new GamesAdapter(itemsAdsGamesModel);
         binding.recyclerViewAdsHome.setHasFixedSize(true);
-        binding.recyclerViewAdsHome.setAdapter(homeAdapter);
-        setItemsAdsHome();
+        binding.recyclerViewAdsHome.setAdapter(gamesAdapter);
+        setItemsAdsGames();
     }
 
-    private void setItemsAdsHome() {
+    private void setItemsAdsGames() {
         for (int i = 0; i < 10; i++) {
-            itemsAdsHome.add(i, new Home(
+            itemsAdsGamesModel.add(i, new GamesModel(
                     R.drawable.ic_cover_face,
                     R.drawable.ic_face,
                     "Facebook Messenger",
@@ -84,19 +86,19 @@ public class GamesFragment extends Fragment {
         }
     }
 
-    private void setHomeAdapterGames() {
+    private void setGamesAdapterGames() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         binding.recyclerViewGamesHome.setLayoutManager(layoutManager);
-        itemsGamesHome = new ArrayList<>();
-        homeAdapter = new HomeAdapter(itemsGamesHome);
+        itemsGamesGamesModel = new ArrayList<>();
+        gamesAdapter = new GamesAdapter(itemsGamesGamesModel);
         binding.recyclerViewGamesHome.setHasFixedSize(true);
-        binding.recyclerViewGamesHome.setAdapter(homeAdapter);
-        setItemsGamesHome();
+        binding.recyclerViewGamesHome.setAdapter(gamesAdapter);
+        setItemsPopularityGames();
     }
 
-    private void setItemsGamesHome() {
+    private void setItemsPopularityGames() {
         for (int i = 0; i < 10; i++) {
-            itemsGamesHome.add(i, new Home(
+            itemsGamesGamesModel.add(i, new GamesModel(
                     R.drawable.ic_call_cover,
                     R.drawable.ic_call,
                     "Call Of Dutty Mobile",

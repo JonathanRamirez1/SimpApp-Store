@@ -1,9 +1,6 @@
-package com.wposs.simpappstore;
+package com.wposs.simpappstore.data;
 
-import android.graphics.drawable.Drawable;
-import android.widget.ImageView;
-
-public class Home {
+public class GamesModel {
 
     private int cover;
     private int icon;
@@ -18,7 +15,7 @@ public class Home {
     private static final int ItemAd = 1;
     private static final int ItemPopularityGames = 2;
 
-    public Home(int cover, int icon, String name, String category, String countStar, int star, String sizeApp) {
+    public GamesModel(int cover, int icon, String name, String category, String countStar, int star, String sizeApp) {
         this.cover = cover;
         this.icon = icon;
         this.name = name;
@@ -28,7 +25,7 @@ public class Home {
         this.sizeApp = sizeApp;
     }
 
-    public Home(int viewType) {
+    public GamesModel(int viewType) {
         this.viewType = viewType;
     }
 

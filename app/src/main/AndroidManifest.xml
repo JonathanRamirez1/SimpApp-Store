@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SimpAppStore">
         <activity
-            android:name=".HomeActivity"
+            android:name=".view.activities.HomeActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".view.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
